@@ -3,7 +3,7 @@ using namespace std;
 
 vector<int> solve(vector<vector<int>> &matrix)
 {
-    int n = matrix.size();
+   int n = matrix.size();
     int m = matrix[0].size(); // matrix column
 
     // right down left up
@@ -36,7 +36,7 @@ vector<int> solve(vector<vector<int>> &matrix)
 
         right--;
 
-        // left
+        // lef t
         if (top > bottom)
             break;
 
