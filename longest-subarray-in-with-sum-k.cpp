@@ -1,5 +1,5 @@
 
-//brute solution  : find all subarray and match or smth 
+// brute solution  : find all subarray and match or smth
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -25,33 +25,61 @@
 //     cout << maxLen << endl;
 // }
 
+// 12 /7/26 -> old code
 
-
-//better solution 
-#include <iostream>
+// better solution
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
+#define ll long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+
+void solve()
 {
-      vector<int> arr = {1, 2, 1, 1, 1, 2, 3};
-      int n = arr.size();
-    int k = 4;
-    map<int,int> mp;
-    int sum =0 ;
-    int maxlength=0;
+    int n ,k ;
+    cin >> n >>k;
+    vector<int> v(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+    }
+      unordered_map<int ,int > mpp;
+mpp[0]=0;
+
+    
+    int Presum =  0 ; 
+    int ans = 0 ; 
     for (int  i = 0; i < n; i++)
     {
-            sum+=arr[i];
-            if(sum==k) maxlength=max(maxlength,i+1);
-            int rem= sum - k ; 
-            if(mp.find(rem)!=mp.end()) {
-               int len = i-mp[rem];
-             maxlength=max(maxlength,len);
-              
-            }
-             mp[sum]=i;
+
+       Presum+=v[i];
+       if(mpp.find(Presum-k)!=mpp.end()){
+              ans = max  (ans , (i+1)-mpp[Presum-k]);
+       }
+
+       if(mpp.find(Presum)==mpp.end()) mpp[Presum]=i+1;
+
+
     }
-    cout<<maxlength;
+    
+
+    cout << ans <<endl; 
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
+
     return 0;
 }
